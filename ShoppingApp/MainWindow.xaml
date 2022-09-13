@@ -1,0 +1,137 @@
+﻿<Window x:Class="ShoppingApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShoppingApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="900"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Background="Transparent"
+        MouseDown="Window_MouseDown">
+
+    <Window.Resources>
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border
+        CornerRadius="20"
+        Background="White"
+        >
+
+        <Grid Margin="10,5">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Right">
+                <Button Width="30"
+                        Padding="0,5,0,0"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Name="minimizeBtn"
+                        Click="minimizeBtn_Click"
+                        Style="{StaticResource MyButton}">
+                    <Image Source="Images/minimize.png"/>
+                </Button>
+                <Button Width="30"
+                        Height="20"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Name="CloseBtn"
+                        Click="CloseBtn_Click"
+                        Style="{StaticResource MyButton}">
+                    <Image Source="Images/close.png"/>
+                </Button>
+            </StackPanel>
+
+            <Grid Grid.Row="1"  >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="Images/menu.png"
+                       Margin="5"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Grid.Column="0">
+
+                </Image>
+
+                <TextBlock Grid.Column="1"
+                           VerticalAlignment="Center"
+                           FontSize="15"
+                           FontWeight="ExtraBold"
+                           >
+                    Shop
+                </TextBlock>
+
+                <Image Source="Images/storelogo.png"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                       Grid.Column="3"
+                       >
+
+                </Image>
+
+                <Image  Grid.Column="5"
+                        Source="Images/flag.png"
+                        Margin="3">
+
+                </Image>
+
+                <TextBlock  Grid.Column="6"
+                           VerticalAlignment="Center"
+                           FontSize="14"
+                           FontWeight="ExtraBold">
+                    AZ
+                </TextBlock>
+
+                <Image  Grid.Column="7"
+                        Source="Images/profpicture.png">
+
+                </Image>
+
+            </Grid>
+            <Grid Grid.Row="2">
+
+            </Grid>
+
+            <Grid Grid.Row="3">
+
+            </Grid>
+
+        </Grid>
+
+    </Border>
+</Window>
