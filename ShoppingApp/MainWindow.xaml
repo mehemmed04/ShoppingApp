@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShoppingApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="900"
+        Title="MainWindow" Height="600" Width="1000"
         AllowsTransparency="True"
         WindowStyle="None"
         Background="Transparent"
@@ -33,15 +33,17 @@
     </Window.Resources>
     <Border
         CornerRadius="20"
-        Background="White"
+        Background="#e7edef"
+        Padding="15,0"
         >
 
         <Grid Margin="10,5">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="15"/>
                 <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
 
@@ -125,9 +127,241 @@
             </Grid>
             <Grid Grid.Row="2">
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.8*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal">
+
+                    <Border CornerRadius="20"
+                            Background="Black"
+                            Margin="10,5"
+                            Padding="20,5">
+                        <Button 
+                                FontSize="15"
+                                BorderThickness="0"
+                                Background="Transparent"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                Style="{StaticResource MyButton}"
+                                >
+                            All brands
+                        </Button>
+                    </Border>
+
+                    <Border CornerRadius="20"
+                            Background="White"
+                            Margin="10,5"
+                            Padding="20,5">
+                        <Button FontSize="15"
+                                BorderThickness="0"
+                                Background="Transparent"
+                                Foreground="#919ca1"
+                                FontWeight="Bold"
+                                Style="{StaticResource MyButton}"
+                                >
+                            Federal Bikes
+                        </Button>
+                    </Border>
+
+                    <Border CornerRadius="20"
+                            Background="White"
+                            Margin="10,5"
+                            Padding="20,5">
+                        <Button FontSize="15"
+                                BorderThickness="0"
+                                Background="Transparent"
+                                Foreground="#919ca1"
+                                FontWeight="Bold"
+                                Style="{StaticResource MyButton}"
+                                >
+                            Odyssey
+                        </Button>
+
+                    </Border>
+                    <Border CornerRadius="20"
+                            Background="White"
+                            Margin="10,5"
+                            Padding="20,5">
+                        <Button FontSize="15"
+                                BorderThickness="0"
+                                Background="Transparent"
+                                Foreground="#919ca1"
+                                FontWeight="Bold"
+                                Style="{StaticResource MyButton}"
+                                >
+                            Subrosa
+                        </Button>
+                    </Border>
+
+                    <Border CornerRadius="20"
+                            Background="White"
+                            Margin="10,5"
+                            Padding="20,5">
+                        <Button FontSize="15"
+                                BorderThickness="0"
+                                Background="Transparent"
+                                Foreground="#919ca1"
+                                FontWeight="Bold"
+                                Style="{StaticResource MyButton}"
+                                >
+                            Cult
+                        </Button>
+                    </Border>
+
+                    <Image Source="Images/dots.png"
+                           Width="20"
+                           Margin="0,8">
+
+                    </Image>
+
+                </StackPanel>
+
+                <Grid Grid.Column="2">
+
+                    <Border CornerRadius="20"
+                            Width="220"
+                            Background="White"
+                            Margin="5"
+                            >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Margin="15,5,5,5"
+                                     Width="165"
+                                     BorderThickness="0"
+                                     VerticalContentAlignment="Center"
+                                     FontSize="15"
+                                     FontWeight="Light"
+                                     Foreground="#919ca1"
+                                     >
+                                Search
+
+                            </TextBox>
+                            <Image Source="Images/search.png"
+                                   Width="30"
+                                   Margin="0,5,5,5">
+
+                            </Image>
+                        </StackPanel>
+                    </Border>
+
+                </Grid>
+
             </Grid>
 
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="4">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="6*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical"
+                            >
+                    <TextBlock Margin="20,10"
+                               Foreground="Black"
+                               FontSize="18"
+                               FontWeight="ExtraBold">
+                        Products
+                    </TextBlock>
+
+                    <TextBlock Margin="20,5"
+                               Foreground="Black"
+                               FontSize="18"
+                               FontWeight="Bold">
+                        All
+                    </TextBlock>
+
+                    <TextBlock Margin="20,5"
+                               Foreground="#919ca1"
+                               FontSize="18"
+                               FontWeight="Normal">
+                        Bikes
+                    </TextBlock>
+
+                    <TextBlock Margin="20,5"
+                               Foreground="#919ca1"
+                               FontSize="18"
+                               FontWeight="Normal">
+                        Wheels
+                    </TextBlock>
+                    <TextBlock Margin="20,5"
+                               Foreground="#919ca1"
+                               FontSize="18"
+                               FontWeight="Normal">
+                        Steering
+                    </TextBlock>
+                    <TextBlock Margin="20,5"
+                               Foreground="#919ca1"
+                               FontSize="18"
+                               FontWeight="Normal">
+                        Clothing
+                    </TextBlock>
+                    <TextBlock Margin="20,5"
+                               Foreground="#919ca1"
+                               FontSize="18"
+                               FontWeight="Normal">
+                        Drivechain
+                    </TextBlock>
+                    <TextBlock Margin="20,5"
+                               Foreground="#919ca1"
+                               FontSize="18"
+                               FontWeight="Normal">
+                        Misc
+                    </TextBlock>
+                    <TextBlock Margin="20,5"
+                               Foreground="#919ca1"
+                               FontSize="18"
+                               FontWeight="Normal">
+                        Seating
+                    </TextBlock>
+                    <TextBlock Margin="20,5"
+                               Foreground="#919ca1"
+                               FontSize="18"
+                               FontWeight="Normal">
+                        Sale
+                    </TextBlock>
+
+                </StackPanel>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2.4*"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                                CornerRadius="20"
+                                Margin="0,5"
+                                >
+
+                            <Border.Background
+                               >
+                                <ImageBrush ImageSource="Images/image1.png">
+                                    
+                                </ImageBrush>
+                            </Border.Background>
+                        </Border>
+
+                        <Border Grid.Column="2"
+                                CornerRadius="20"
+                                Background="White"
+                                Margin="0,5">
+
+                        </Border>
+
+                    </Grid>
+
+                </Grid>
 
             </Grid>
 
