@@ -70,7 +70,7 @@ namespace ShoppingApp
                 {
                      ImagePath="Images/Products/product7.png",
                      ProductName ="T-shirt",
-                     ProductPrice = 12
+                     ProductPrice = 12.99
                 },
                 new Product
                 {
@@ -98,58 +98,23 @@ namespace ShoppingApp
                 },
                 new Product
                 {
-                     ImagePath="Images/Products/product1.png",
-                     ProductName ="Amsterdam eBike",
-                     ProductPrice = 2698
+                     ImagePath="Images/Products/product11.png",
+                     ProductName ="Iphone 14 Pro Max Case",
+                     ProductPrice = 49.99
                 },
                 new Product
                 {
-                     ImagePath="Images/Products/product1.png",
-                     ProductName ="Amsterdam eBike",
-                     ProductPrice = 2698
+                     ImagePath="Images/Products/product12.png",
+                     ProductName ="Macbook 13 Pro",
+                     ProductPrice = 3456
                 },
                 new Product
                 {
-                     ImagePath="Images/Products/product1.png",
-                     ProductName ="Amsterdam eBike",
-                     ProductPrice = 2698
+                     ImagePath="Images/Products/product13.png",
+                     ProductName ="Samsung S22 Ultra",
+                     ProductPrice = 1250
                 },
-                new Product
-                {
-                     ImagePath="Images/Products/product1.png",
-                     ProductName ="Amsterdam eBike",
-                     ProductPrice = 2698
-                },
-                new Product
-                {
-                     ImagePath="Images/Products/product1.png",
-                     ProductName ="Amsterdam eBike",
-                     ProductPrice = 2698
-                },
-                new Product
-                {
-                     ImagePath="Images/Products/product1.png",
-                     ProductName ="Amsterdam eBike",
-                     ProductPrice = 2698
-                },
-                new Product
-                {
-                     ImagePath="Images/Products/product1.png",
-                     ProductName ="Amsterdam eBike",
-                     ProductPrice = 2698
-                },
-                  new Product
-                {
-                     ImagePath="Images/Products/product1.png",
-                     ProductName ="Amsterdam eBike",
-                     ProductPrice = 2698
-                },
-                    new Product
-                {
-                     ImagePath="Images/Products/product1.png",
-                     ProductName ="Amsterdam eBike",
-                     ProductPrice = 2698
-                },
+     
             };
         }
 

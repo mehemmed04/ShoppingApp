@@ -144,5 +144,10 @@
   <ItemGroup>
     <Resource Include="Images\maximizescreen.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Products\product11.png" />
+    <Resource Include="Images\Products\product12.png" />
+    <Resource Include="Images\Products\product13.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
