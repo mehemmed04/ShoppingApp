@@ -69,6 +69,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -112,6 +113,36 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\plus-math.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Products\product1.png" />
+    <Resource Include="Images\Products\product10.png" />
+    <Resource Include="Images\Products\product2.png" />
+    <Resource Include="Images\Products\product3.png" />
+    <Resource Include="Images\Products\product5.png" />
+    <Resource Include="Images\Products\product6.png" />
+    <Resource Include="Images\Products\product7.png" />
+    <Resource Include="Images\Products\product8.png" />
+    <Resource Include="Images\Products\product9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\profpicture2.png" />
+    <Resource Include="Images\profpicture3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\profpicture4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Products\product4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\motorbike.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\maximizescreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,13 +5,91 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShoppingApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000"
+        Title="MainWindow" Height="600" Width="1050"
         AllowsTransparency="True"
         WindowStyle="None"
         Background="Transparent"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown"
+        ResizeMode="CanResizeWithGrip">
 
     <Window.Resources>
+
+
+
+
+        <!-- set SelectedBackgroundColor to Transparent when you do not need the background in selected items -->
+        <Color x:Key="SelectedBackgroundColor">#00FFFFFF</Color>
+        <Color x:Key="SelectedUnfocusedColor">#e7edef</Color>
+
+        <!-- set the MouseOverColor to Transparent when you do not need the effect in the unselected items -->
+        <Color x:Key="MouseOverColor" >#00FFFFFF</Color>
+
+        <Style x:Key="ListViewItemStyle"
+           TargetType="ListViewItem">
+            <Setter Property="SnapsToDevicePixels"
+                Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+                Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Border"
+                            Padding="2"
+                            SnapsToDevicePixels="true"
+                            Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" >
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                      Storyboard.TargetProperty="(Panel.Background).
+                (SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                                                 Value="{StaticResource MouseOverColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled" />
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Unselected" />
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                      Storyboard.TargetProperty="(Panel.Background).
+                (SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                                                 Value="{StaticResource SelectedBackgroundColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="SelectedUnfocused">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                      Storyboard.TargetProperty="(Panel.Background).
+                (SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                                                 Value="{StaticResource SelectedUnfocusedColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+
+
+
+
+
         <Style x:Key="MyButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Cursor" Value="Hand" />
@@ -30,6 +108,81 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid x:Name="Grid">
+                            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                                           Height="Auto" Fill="Transparent"/>
+                            <Border x:Name="Rectangle1" CornerRadius="10 0 0 10" HorizontalAlignment="Stretch" 
+                                        VerticalAlignment="Stretch" Width="Auto" Height="Auto" 
+                                        Background="{TemplateBinding Background}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Tag" Value="Horizontal">
+                                <Setter TargetName="Rectangle1" Property="Width" Value="Auto"/>
+                                <Setter TargetName="Rectangle1" Property="Height" Value="7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--SCROLLBARS-->
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="DarkGray"/>
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="GridRoot" Width="7" Background="{x:Null}">
+                            <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="False">
+                                <Track.Thumb>
+                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" 
+                                               Style="{DynamicResource ScrollThumbs}"/>
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="False"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="False"/>
+                                </Track.DecreaseRepeatButton>
+                            </Track>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="Orientation" Value="Horizontal">
+                                <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Width" Value="Auto"/>
+                                <Setter Property="Height" Value="12"/>
+                                <Setter TargetName="Thumb" Property="Tag" Value="Horizontal"/>
+                                <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand"/>
+                                <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
     <Border
         CornerRadius="20"
@@ -42,7 +195,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="15"/>
                 <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
@@ -59,6 +212,20 @@
                         Style="{StaticResource MyButton}">
                     <Image Source="Images/minimize.png"/>
                 </Button>
+
+                <Button Width="30"
+                        Height="20"
+                        BorderThickness="0"
+                        Name="maximizeBtn"
+                        Padding="0,5,0,0"
+                        Click="maximizeBtn_Click"
+                        Style="{StaticResource MyButton}"
+                        
+                       >
+                    <Image Source="Images/maximizescreen.png"/>
+
+                </Button>
+
                 <Button Width="30"
                         Height="20"
                         BorderThickness="0"
@@ -221,14 +388,19 @@
 
                 <Grid Grid.Column="2">
 
+
+
                     <Border CornerRadius="20"
-                            Width="220"
                             Background="White"
-                            Margin="5"
+                            Margin="5,5,10,5"
                             >
-                        <StackPanel Orientation="Horizontal">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="40"/>
+                            </Grid.ColumnDefinitions>
+
                             <TextBox Margin="15,5,5,5"
-                                     Width="165"
                                      BorderThickness="0"
                                      VerticalContentAlignment="Center"
                                      FontSize="15"
@@ -240,10 +412,11 @@
                             </TextBox>
                             <Image Source="Images/search.png"
                                    Width="30"
-                                   Margin="0,5,5,5">
+                                   Margin="0,5,5,5"
+                                   Grid.Column="1">
 
                             </Image>
-                        </StackPanel>
+                        </Grid>
                     </Border>
 
                 </Grid>
@@ -347,7 +520,7 @@
                             <Border.Background
                                >
                                 <ImageBrush ImageSource="Images/image1.png">
-                                    
+
                                 </ImageBrush>
                             </Border.Background>
                         </Border>
@@ -357,15 +530,159 @@
                                 Background="White"
                                 Margin="0,5">
 
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Border CornerRadius="20"
+                                        Margin="20,5">
+
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="Images/motorbike.jpg">
+                                            
+                                        </ImageBrush>
+                                    </Border.Background>
+                                   
+                                </Border>
+
+                                <Grid Grid.Row="1"
+                                      Margin="20,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel HorizontalAlignment="Left">
+
+                                        <TextBlock
+                                            FontSize="13"
+                                            FontWeight="Black">XGAMES2022</TextBlock>
+                                        <TextBlock
+                                            FontSize="11">
+                                            New DVD, USA 2022*Red Bull
+                                        </TextBlock>
+                                    </StackPanel>
+
+
+                                    <Canvas Margin="0,0,8,0">
+                                        <Image Source="Images/profpicture2.png" Width="30" Canvas.Right="0"></Image>
+                                        <Image Source="Images/profpicture3.png" Width="30" Canvas.Right="15"></Image>
+                                        <Image Source="Images/profpicture4.png" Height="30" Width="30" Canvas.Right="30"></Image>
+                                    </Canvas>
+                                </Grid>
+                            </Grid>
                         </Border>
 
-                    </Grid>
+    </Grid>
 
-                </Grid>
+    <Grid Grid.Row="1">
+        <StackPanel  Background="#e7edef">
 
-            </Grid>
+            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                      Background="Transparent"
+                              HorizontalContentAlignment="Left" 
+                              Height="290" 
+                              Name="ListViewProducts" 
+                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                              ItemsSource="{Binding Products}"
+                          BorderThickness="0">
 
-        </Grid>
+
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                                Width="130"
+                                Height="150"
+                                Margin="0,10,20,0">
+
+                            <Canvas >
+
+                                <Border
+                                    Background="White"
+                                    Width="114"
+                                    Height="134"
+                                    CornerRadius="20"
+                                    BorderThickness="0"
+                                    >
+
+                                    <StackPanel Orientation="Vertical"
+                                                    >
+                                        <Image Source="{Binding ImagePath}"
+                                                   Width="90"
+                                                   Height="70"
+                                                   Margin="0,20,0,0">
+
+                                        </Image>
+
+                                        <TextBlock FontSize="11"
+                                                       Margin="10,5,0,0"
+                                                       FontWeight="Bold"
+                                                       Foreground="Black"
+                                                       Text="{Binding ProductName}"
+                                                       ></TextBlock>
+
+                                        <StackPanel Orientation="Horizontal">
+
+                                            <TextBlock FontSize="11"
+                                                       Margin="10,5,0,0"
+                                                       FontWeight="Bold"
+                                                       Foreground="Black"
+                                                       Text="{Binding ProductPrice}"
+                                                       ></TextBlock>
+                                            <TextBlock
+                                                     FontSize="11"
+                                                       Margin="2,5,0,0"
+                                                       FontWeight="Bold"
+                                                       Foreground="Black">$</TextBlock>
+                                        </StackPanel>
+
+                                    </StackPanel>
+
+                                </Border>
+
+                                <Border
+                                        Canvas.Right="0"
+                                        Canvas.Bottom="0"
+                                        Width="40"
+                                        Height="40"
+                                        CornerRadius="20"
+                                        Background="#e7edef"
+                                        Padding="5"
+                                        >
+
+                                    <Border Padding="2"
+                                                CornerRadius="20"
+                                                Background="White">
+
+                                        <Image Source="Images/plus-math.png"></Image>
+
+                                    </Border>
+
+                                </Border>
+                            </Canvas>
+                        </Border>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+
+
+            </ListView>
+        </StackPanel>
+    </Grid>
+
+    </Grid>
+
+    </Grid>
+
+    </Grid>
 
     </Border>
 </Window>
