@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +33,19 @@ namespace ShoppingApp
 
         private void EditImageBtn_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog() { Multiselect = true };
+            bool? response = openFileDialog.ShowDialog();
+            if (response == true)
+            {
+                string[] files = openFileDialog.FileNames;
+                for (int i = 0; i < files.Length; i++)
+                {
+                    string filename = System.IO.Path.GetFullPath(files[i]);
+                    FileInfo fileInfo = new FileInfo(files[i]);
 
+                    product.ImagePath = filename;
+                }
+            }
         }
     }
 }
