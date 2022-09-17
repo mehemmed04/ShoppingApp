@@ -384,6 +384,9 @@
 
                     </Image>
 
+                    
+                    
+                    
                 </StackPanel>
 
                 <Grid Grid.Column="2">
@@ -406,9 +409,10 @@
                                      FontSize="15"
                                      FontWeight="Light"
                                      Foreground="#919ca1"
+                                     Name="SearchTextBox"
+                                     TextChanged="SearchTextBox_TextChanged"
                                      >
-                                Search
-
+                                
                             </TextBox>
                             <Image Source="Images/search.png"
                                    Width="30"
@@ -585,8 +589,8 @@
                               Name="ListViewProducts" 
                               ItemContainerStyle="{StaticResource ListViewItemStyle}"
                               ItemsSource="{Binding Products}"
-                          BorderThickness="0"
-                      MouseDoubleClick="ListViewProducts_MouseDoubleClick">
+                              BorderThickness="0"
+                              MouseDoubleClick="ListViewProducts_MouseDoubleClick">
 
 
 
@@ -655,8 +659,14 @@
                                     <Border Padding="2"
                                                 CornerRadius="20"
                                                 Background="White">
-
+                                                        <Button Style="{StaticResource MyButton}"
+                                                                Background="Transparent"
+                                                                BorderThickness="0"
+                                                                Name="AddToBasketBtn"
+                                                                Click="AddToBasketBtn_Click">
+                                                            
                                         <Image Source="Images/plus-math.png"></Image>
+                                                        </Button>
 
                                     </Border>
 

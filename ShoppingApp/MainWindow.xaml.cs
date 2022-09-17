@@ -22,7 +22,19 @@ namespace ShoppingApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Product> Products { get; set; }
+
+
+        public List<Product> Products
+        {
+            get { return (List<Product>)GetValue(ProductsProperty); }
+            set { SetValue(ProductsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Products.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ProductsProperty =
+            DependencyProperty.Register("Products", typeof(List<Product>), typeof(MainWindow));
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -155,6 +167,25 @@ namespace ShoppingApp
             var product = ListViewProducts.SelectedItem as Product;
             ProductWindow productWindow = new ProductWindow(product);
             productWindow.ShowDialog();
+        }
+
+        private void AddToBasketBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var product = ListViewProducts.SelectedItem as Product;
+            MessageBox.Show($"Succesfully added to Basket");
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SearchTextBox.Text == String.Empty)
+            {
+                Products=GetProducts();
+                return;
+            }
+            Products = Products.Where(p =>
+            {
+                return p.ProductName.Contains(SearchTextBox.Text);
+            }).ToList();
         }
     }
 }
