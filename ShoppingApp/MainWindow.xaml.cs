@@ -149,5 +149,12 @@ namespace ShoppingApp
                 IsFullScreen = true;
             }
         }
+
+        private void ListViewProducts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var product = ListViewProducts.SelectedItem as Product;
+            ProductWindow productWindow = new ProductWindow(product);
+            productWindow.ShowDialog();
+        }
     }
 }

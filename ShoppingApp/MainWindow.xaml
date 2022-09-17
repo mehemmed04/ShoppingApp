@@ -585,7 +585,8 @@
                               Name="ListViewProducts" 
                               ItemContainerStyle="{StaticResource ListViewItemStyle}"
                               ItemsSource="{Binding Products}"
-                          BorderThickness="0">
+                          BorderThickness="0"
+                      MouseDoubleClick="ListViewProducts_MouseDoubleClick">
 
 
 
